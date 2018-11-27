@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding");
+
+body {
+  line-height: 1;
+  font-family: "Nanum Gothic Coding", monospace;
+  background-color: #dda7fa;
+  color: #1237a6;
+}
+
+@import "_cardStyles";
+@import "_formStyles";
+
+/*general styles here*/
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 960px;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.wi {
+  font-size: 30px;
+}
