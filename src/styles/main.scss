@@ -3,9 +3,13 @@
 body {
   line-height: 1;
   font-family: "Nanum Gothic Coding", monospace;
-  background-color: #dda7fa;
-  color: #1237a6;
+  color: #f6fb98;
+  h2 {
+    font-weight: normal;
+  }
 }
+
+
 
 @import "_cardStyles";
 @import "_formStyles";

@@ -3,11 +3,9 @@ import React, { Component, Fragment } from "react";
 /*import styles from "./styles/weather-icons.css";
 import iconStyles from "./styles/weather-icons-wind.min.css";*/
 
-import { ConvertToC } from "./utility/convertToC";
-
 import { ForecastHeader } from "./forecast_header";
 import { ForecastTemp } from "./forecast_temp";
-import {ForecastWindHumidity} from "./forecast_windHum";
+import { ForecastWindHumidity } from "./forecast_windHum";
 
 class ForecastCard extends Component {
   render() {
@@ -23,9 +21,8 @@ class ForecastCard extends Component {
     return (
       <div className="forecast-card">
         <ForecastHeader {...this.props} />
-        <ForecastTemp tempData={tempData} />
-        <ForecastWindHumidity tempData={tempData}
-         windData={windData} />
+        <ForecastTemp {...this.props} />
+        <ForecastWindHumidity tempData={tempData} windData={windData} />
       </div>
     );
   }

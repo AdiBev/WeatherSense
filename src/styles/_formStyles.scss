@@ -9,12 +9,11 @@ $focusColor: #1a6005;
 }
 
 input {
-  border: 0 none;
-  border-bottom: 2px solid #fa7272;
-  outline: none;
+  border-radius: 10px;
   padding-top: 10px;
   font-size: 18px;
   text-align: center;
+  outline: none;
 }
 
 input:focus {

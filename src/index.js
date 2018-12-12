@@ -5,7 +5,7 @@ import SearchBar from "./search_bar";
 
 /*styles imported here*/
 import windIconsStyles from "./styles/weather-icons-wind.min.css";
-import iconsStyles from "./styles/weather-icons.css";
+import iconsStyles from "./styles/weather-icons.min.css";
 const Index = () => {
   return (
     <Fragment>

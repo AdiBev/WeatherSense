@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Switch from "react-switch";
 
 import ForecastCard from "./forecast_card";
 import { API_KEY } from "./config/api_keys";
-import { weatherIcons } from "./weatherIcons";
+import { GlobalStylesComp } from "./styled-comps/globalStyle";
 
 class SearchBar extends Component {
   state = {
     search_term: "",
+    checked: false,
     forecastDataObj: "",
-    icon: "",
+    tempF: "",
+    temp_minF: "",
+    temp_maxF: "",
     error: ""
   };
 
-  handleChange = e => {
+  handleInputChange = e => {
     this.setState({ search_term: e.target.value });
   };
 
@@ -22,77 +26,52 @@ class SearchBar extends Component {
     const { search_term } = this.state;
 
     this.getWeatherdata(search_term);
-    this.getForecastData(search_term);
-  };
-
-  getWeatherdata = term => {
-    const root_url = `http://api.openweathermap.org/data/2.5/weather?q=${term}&appid=${API_KEY}`;
-    return axios
-      .get(root_url)
-      .then(resp =>
-        this.setState(
-          {
-            forecastDataObj: resp.data,
-            iconId: resp.data.weather[0].id
-          },
-          this.getIcons(resp)
-        )
-      )
-      .catch(error => this.setState({ error }));
     this.setState({ search_term: "" });
   };
 
-  getForecastData = (term) => {
-    const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?q=${term}&appid=${API_KEY}`;
-
-    return axios
-      .get(forecast_url)
-      .then(resp => console.log(resp.data))
-      .catch(error => this.setState({ error }));
+  handleSwitchChange = (checked, tem) => {
+    this.setState({ checked: checked }, () => console.log(this.state.checked));
   };
 
-  getIcons = resp => {
-    const prefix = "wi wi-";
-    const data = resp.data;
-    //determine whether location is day or night
-    let dayOrNight = /[a-zA-Z]+/g.exec(data.weather[0].icon);
-    //get icon id
-    const code = data.weather[0].id;
-    let { icon } = weatherIcons[code];
-
-    if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-      if (code === 800 && dayOrNight[0] === "d") {
-        icon = "day-sunny";
-      } else if (code === 800 && dayOrNight[0] === "n") {
-        icon = "night-clear";
-      } else if (dayOrNight[0] === "d") {
-        icon = "day-" + icon;
-      } else if (dayOrNight[0] === "n") {
-        icon = "night-" + icon;
-      }
-    }
-
-    icon = prefix + icon;
-    this.setState({ icon }, () => {
-      console.log(this.state.icon);
-    });
+  getWeatherdata = term => {
+    const root_url = `http://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&appid=${API_KEY}`;
+    return axios
+      .get(root_url)
+      .then(resp =>
+        this.setState({
+          forecastDataObj: resp.data,
+          tempF: resp.data.main.temp * 9 / 5 + 32,
+          temp_minF: resp.data.main.temp_min * 9 / 5 + 32,
+          temp_maxF: resp.data.main.temp_max * 9 / 5 + 32
+        })
+      )
+      .catch(error => this.setState({ error }, console.log(error)));
   };
 
   render() {
-    const { search_term, forecastDataObj } = this.state;
+    const { search_term, forecastDataObj, checked } = this.state;
+    const bgColor = "#a183c9";
+
     return (
       <div className="form-container">
+        <GlobalStylesComp color={bgColor} data={forecastDataObj} />
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             value={search_term}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <button type="submit" id="submit">
             Search
           </button>
         </form>
+        <Switch
+          checked={checked}
+          onChange={this.handleSwitchChange}
+          checkedIcon={<i className="wi wi-celsius" />}
+          uncheckedIcon={<i className="wi wi-fahrenheit" />}
+        />
         <ForecastCard {...this.state} />
       </div>
     );
