@@ -40,6 +40,7 @@ export const ForecastHeader = ({ forecastDataObj, tempF, checked }) => {
           {getIcon(forecastDataObj)}{" "}
           <ShowTemp checked={checked} tempF={tempF} tempC={temp} />
         </h1>
+        <h2>{forecastDataObj.weather[0].description}</h2>
       </div>
     </Fragment>
   );

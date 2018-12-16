@@ -9,13 +9,13 @@ import { ForecastWindHumidity } from "./forecast_windHum";
 
 class ForecastCard extends Component {
   render() {
-    const { forecastDataObj, icon } = this.props;
+    const { forecastDataObj, icon, error } = this.props;
     //props for diff comps
     const tempData = forecastDataObj.main;
     const windData = forecastDataObj.wind;
 
     //if forecastDataObj is empty
-    if (!forecastDataObj) {
+    if (!forecastDataObj || error) {
       return null;
     }
     return (

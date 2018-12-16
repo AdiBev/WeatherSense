@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import Switch from "react-switch";
 
 import ForecastCard from "./forecast_card";
 import { API_KEY } from "./config/api_keys";
 import { GlobalStylesComp } from "./styled-comps/globalStyle";
+import { ErrorHandler } from "./error_handler";
+import { Logo } from "./logo";
+import { AppDescription } from "./app_desc";
 
 class SearchBar extends Component {
   state = {
@@ -30,11 +33,11 @@ class SearchBar extends Component {
   };
 
   handleSwitchChange = (checked, tem) => {
-    this.setState({ checked: checked }, () => console.log(this.state.checked));
+    this.setState({ checked: checked });
   };
 
   getWeatherdata = term => {
-    const root_url = `http://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&appid=${API_KEY}`;
+    const root_url = `https://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&appid=${API_KEY}`;
     return axios
       .get(root_url)
       .then(resp =>
@@ -42,38 +45,49 @@ class SearchBar extends Component {
           forecastDataObj: resp.data,
           tempF: resp.data.main.temp * 9 / 5 + 32,
           temp_minF: resp.data.main.temp_min * 9 / 5 + 32,
-          temp_maxF: resp.data.main.temp_max * 9 / 5 + 32
+          temp_maxF: resp.data.main.temp_max * 9 / 5 + 32,
+          error: ""
         })
       )
-      .catch(error => this.setState({ error }, console.log(error)));
+      .catch(error => this.setState({ error }));
   };
 
   render() {
-    const { search_term, forecastDataObj, checked } = this.state;
-    const bgColor = "#a183c9";
+    const { search_term, forecastDataObj, checked, error } = this.state;
 
     return (
-      <div className="form-container">
-        <GlobalStylesComp color={bgColor} data={forecastDataObj} />
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={search_term}
-            onChange={this.handleInputChange}
-            required
-          />
-          <button type="submit" id="submit">
-            Search
-          </button>
-        </form>
-        <Switch
-          checked={checked}
-          onChange={this.handleSwitchChange}
-          checkedIcon={<i className="wi wi-celsius" />}
-          uncheckedIcon={<i className="wi wi-fahrenheit" />}
-        />
-        <ForecastCard {...this.state} />
-      </div>
+      <Fragment>
+        <Logo />
+        <div className="form-container">
+          {<GlobalStylesComp data={forecastDataObj} />}
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              value={search_term}
+              onChange={this.handleInputChange}
+              required
+            />
+            <button type="submit" id="submit">
+              Search
+            </button>
+            <div style={{ marginTop: 10 + "px" }}>
+              {forecastDataObj && !error ? (
+                <Switch
+                  checked={checked}
+                  onChange={this.handleSwitchChange}
+                  checkedIcon={<i className="wi wi-celsius" />}
+                  uncheckedIcon={<i className="wi wi-fahrenheit" />}
+                  onColor="#849186"
+                  offColor="#7e6a8b"
+                />
+              ) : null}
+            </div>
+          </form>
+          <AppDescription {...this.state} />
+          <ForecastCard {...this.state} />
+          <ErrorHandler {...this.state} />
+        </div>
+      </Fragment>
     );
   }
 }

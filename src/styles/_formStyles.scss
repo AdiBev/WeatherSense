@@ -1,28 +1,40 @@
-$focusColor: #1a6005;
-
 .form-container {
   grid-column: 1 / 3;
   display: grid;
-  align-items: center;
-  justify-content: center;
   margin-top: 20px;
-}
 
-input {
-  border-radius: 10px;
-  padding-top: 10px;
-  font-size: 18px;
-  text-align: center;
-  outline: none;
-}
+  form {
+    margin: auto;
+    input {
+      border-radius: 10px;
+      padding-top: 10px;
+      font-size: 18px;
+      text-align: center;
+      outline: none;
+      box-shadow: none;
 
-input:focus {
-  border-color: $focusColor;
-}
+      &:focus {
+        border-color: #139f6a;
+      }
+    }
 
-#submit {
-  padding: 5px 5px;
-  border-radius: 5px;
-  margin-left: 10px;
-  outline: none;
+    #submit {
+      padding: 10px 5px 5px;
+      border-radius: 5px;
+      border-color: #0e4d65;
+      margin-left: 10px;
+      outline: none;
+      color: white;
+      background-color: #5379d9;
+      display: inline-block;
+      font-size: 15px;
+    }
+  }
+
+  #app-desc {
+    align-items: center;
+
+    color: #094469;
+    text-align: center;
+  }
 }
