@@ -1,17 +1,16 @@
-## React-boilerplate
+#WeatherSense
 
-A React boilerplate to start new projects quickly
+A simple, opensource weather app made using [React](https://reactjs.org/) library. It gathers data from [OpenWeatherMap](https://openweathermap.org/), via their public API.
 
-### Getting Started
+##Features
+*Simple design 
+*Day and night theme
+*Multiple temperature units
+*Gives weather forecast for any city in the world
 
-checkout this repo and with npm install dependencies with these commands
+#Contribution
+If you have any ideas or suggestions please get in touch with me.
 
-```
->git clone https://github.com/AdiBev/React-boilerplate.git
->cd React-boilerplate
->npm install
->npm start
-```
+The weather data is provided by [OpenWeatherMap](https://openweathermap.org/), under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>.
 
-This boilerplate comes with latest versions of react-router-dom, webpack 4 and babel 7 with react and env presets.
-Hot reloading with webpack-dev-sever (latest version included).
+Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>
