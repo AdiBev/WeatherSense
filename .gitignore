@@ -1,6 +1,6 @@
 /dist
 /node_modules
 /src/config
-.firebase
-/.firebaserc
+/.firebase
+.firebaserc
 firebase.json
