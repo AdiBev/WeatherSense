@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import Switch from "react-switch";
+import PropTypes from "prop-types";
 
 import ForecastCard from "./forecast_card";
 import { API_KEY } from "./config/api_keys";
@@ -27,7 +28,6 @@ class SearchBar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { search_term } = this.state;
-
     this.getWeatherdata(search_term);
     this.setState({ search_term: "" });
   };
@@ -91,5 +91,21 @@ class SearchBar extends Component {
     );
   }
 }
+/*search_term: "",
+checked: false,
+forecastDataObj: "",
+tempF: "",
+temp_minF: "",
+temp_maxF: "",
+error: ""*/
+
+SearchBar.propTypes = {
+  search_term: PropTypes.string,
+  forecastDataObj: PropTypes.object,
+  tempF: PropTypes.number,
+  temp_minF: PropTypes.number,
+  temp_maxF: PropTypes.number,
+  error: PropTypes.object
+};
 
 export default SearchBar;
