@@ -1,8 +1,6 @@
 import React from "react";
-//#f6fb98
 import { createGlobalStyle } from "styled-components";
 
-//saved my ASS!!!
 const GlobalStyles = createGlobalStyle`
   html  {
     background: ${props => (props.dNdata === "n" ? "#676767" : "#feffd6")};
