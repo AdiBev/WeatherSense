@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import Switch from "react-switch";
-import PropTypes from "prop-types";
 
 import ForecastCard from "./forecast_card";
 import { API_KEY } from "./config/api_keys";
@@ -85,27 +84,11 @@ class SearchBar extends Component {
           </form>
           <AppDescription {...this.state} />
           <ForecastCard {...this.state} />
-          <ErrorHandler {...this.state} />
+          <ErrorHandler error={error} />
         </div>
       </Fragment>
     );
   }
 }
-/*search_term: "",
-checked: false,
-forecastDataObj: "",
-tempF: "",
-temp_minF: "",
-temp_maxF: "",
-error: ""*/
-
-SearchBar.propTypes = {
-  search_term: PropTypes.string,
-  forecastDataObj: PropTypes.object,
-  tempF: PropTypes.number,
-  temp_minF: PropTypes.number,
-  temp_maxF: PropTypes.number,
-  error: PropTypes.object
-};
 
 export default SearchBar;

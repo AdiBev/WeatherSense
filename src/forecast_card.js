@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-
+import PropTypes from "prop-types";
 /*import styles from "./styles/weather-icons.css";
 import iconStyles from "./styles/weather-icons-wind.min.css";*/
 
@@ -27,5 +27,13 @@ class ForecastCard extends Component {
     );
   }
 }
+
+ForecastCard.propTypes = {
+  forecastDataObj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  tempF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  temp_minF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  temp_maxF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  checked: PropTypes.bool.isRequired
+};
 
 export default ForecastCard;

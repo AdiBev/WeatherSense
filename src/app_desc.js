@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-
-
+import PropTypes from "prop-types";
 
 export const AppDescription = ({ forecastDataObj, error }) => {
   return (
@@ -16,4 +15,9 @@ export const AppDescription = ({ forecastDataObj, error }) => {
       ) : null}
     </Fragment>
   );
+};
+
+AppDescription.propTypes = {
+  forecastDataObj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
 };

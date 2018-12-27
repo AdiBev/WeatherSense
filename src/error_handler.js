@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
-export const ErrorHandler = ({ error, search_term }) => {
+export const ErrorHandler = ({ error }) => {
   const styles = {
     color: "#931008",
     textAlign: "center"
@@ -16,4 +17,8 @@ export const ErrorHandler = ({ error, search_term }) => {
       ) : null}
     </Fragment>
   );
+};
+
+ErrorHandler.propTypes = {
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
 };
