@@ -18,7 +18,7 @@ const showTemp = (check, tF, tC) => {
   }
 };
 
-export const ShowTemp = props => {
+export const ToggleTempUnits = props => {
   const { checked, tempF, tempC } = props;
   return <Fragment>{showTemp(checked, tempF, tempC)}</Fragment>;
 };

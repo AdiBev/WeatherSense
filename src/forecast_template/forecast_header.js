@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
-import { weatherIcons } from "./weatherIcons";
-import { ShowTemp } from "./show_temp";
+import { weatherIcons } from "../weatherIcons/weatherIcons";
+import { ToggleTempUnits } from "../toggle_tempUnits/toggle_tempUnits";
 
 const getIcon = data => {
   const prefix = "wi wi-";
@@ -38,7 +38,7 @@ export const ForecastHeader = ({ forecastDataObj, tempF, checked }) => {
 
         <h1>
           {getIcon(forecastDataObj)}{" "}
-          <ShowTemp checked={checked} tempF={tempF} tempC={temp} />
+          <ToggleTempUnits checked={checked} tempF={tempF} tempC={temp} />
         </h1>
         <h2>{forecastDataObj.weather[0].description}</h2>
       </div>

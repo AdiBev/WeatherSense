@@ -2,12 +2,12 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import Switch from "react-switch";
 
-import ForecastCard from "./forecast_card";
-import { API_KEY } from "./config/api_keys";
-import { GlobalStylesComp } from "./styled-comps/globalStyle";
-import { ErrorHandler } from "./error_handler";
-import { Logo } from "./logo";
-import { AppDescription } from "./app_desc";
+import ForecastCard from "../forecast_template/forecast_card";
+import { API_KEY } from "../config/api_keys";
+import { GlobalStylesComp } from "../styled-comps/globalStyle";
+import { ErrorHandler } from "../error_handler/error_handler";
+import { Logo } from "../logo/logo";
+import { AppDescription } from "../app_desc/app_desc";
 
 class SearchBar extends Component {
   state = {
