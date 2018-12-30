@@ -4,3 +4,4 @@
 /.firebase
 .firebaserc
 firebase.json
+src/styles/main.min.css
