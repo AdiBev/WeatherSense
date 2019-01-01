@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import axios from "axios";
 import Switch from "react-switch";
 
 import ForecastCard from "../forecast_template/forecast_card";
@@ -8,12 +7,13 @@ import { GlobalStylesComp } from "../styled-comps/globalStyle";
 import { ErrorHandler } from "../error_handler/error_handler";
 import { Logo } from "../logo/logo";
 import { AppDescription } from "../app_desc/app_desc";
-
+import { ForecastSpinner } from "../spinner/forecast_spinner";
 class SearchBar extends Component {
   state = {
     search_term: "",
     checked: false,
     forecastDataObj: "",
+    loading: false,
     tempF: "",
     temp_minF: "",
     temp_maxF: "",
@@ -37,14 +37,17 @@ class SearchBar extends Component {
 
   getWeatherdata = term => {
     const root_url = `https://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&appid=${API_KEY}`;
-    return axios
-      .get(root_url)
-      .then(resp =>
+    return fetch(root_url)
+      .then(this.setState({ loading: true }))
+      .then(resp => resp.json())
+      .then(data =>
         this.setState({
-          forecastDataObj: resp.data,
-          tempF: resp.data.main.temp * 9 / 5 + 32,
-          temp_minF: resp.data.main.temp_min * 9 / 5 + 32,
-          temp_maxF: resp.data.main.temp_max * 9 / 5 + 32,
+          forecastDataObj: data,
+          tempF: (data.main.temp * 9) / 5 + 32,
+          temp_minF: (data.main.temp_min * 9) / 5 + 32,
+          temp_maxF: (data.main.temp_max * 9) / 5 + 32,
+          windSpeedM: Math.round(data.wind.speed * 2.237),
+          loading: false,
           error: ""
         })
       )
@@ -52,7 +55,13 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { search_term, forecastDataObj, checked, error } = this.state;
+    const {
+      search_term,
+      forecastDataObj,
+      checked,
+      error,
+      loading
+    } = this.state;
 
     return (
       <Fragment>
@@ -62,26 +71,31 @@ class SearchBar extends Component {
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
-              value={search_term}
+              value={search_term.toUpperCase()}
               onChange={this.handleInputChange}
               required
             />
             <button type="submit" id="submit">
-              Search
+              <span>Search</span>
             </button>
-            <div style={{ marginTop: 10 + "px" }}>
+            <div style={{ marginLeft: 70, marginTop: 10 }}>
               {forecastDataObj && !error ? (
-                <Switch
-                  checked={checked}
-                  onChange={this.handleSwitchChange}
-                  checkedIcon={<i className="wi wi-celsius" />}
-                  uncheckedIcon={<i className="wi wi-fahrenheit" />}
-                  onColor="#849186"
-                  offColor="#7e6a8b"
-                />
+                <Fragment>
+                  <i className="wi wi-celsius switch" />{" "}
+                  <Switch
+                    checked={checked}
+                    onChange={this.handleSwitchChange}
+                    checkedIcon={false}
+                    uncheckedIcon={false}
+                    onColor="#849186"
+                    offColor="#7e6a8b"
+                  />{" "}
+                  <i className="wi wi-fahrenheit switch" />
+                </Fragment>
               ) : null}
             </div>
           </form>
+          <ForecastSpinner loading={loading} error={error} />
           <AppDescription {...this.state} />
           <ForecastCard {...this.state} />
           <ErrorHandler error={error} />
