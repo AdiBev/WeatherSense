@@ -22,17 +22,24 @@ class ForecastCard extends Component {
       <div className="forecast-card">
         <ForecastHeader {...this.props} />
         <ForecastTemp {...this.props} />
-        <ForecastWindHumidity tempData={tempData} windData={windData} />
+        <ForecastWindHumidity
+          {...this.props}
+          tempData={tempData}
+          windData={windData}
+        />
       </div>
     );
   }
 }
 
 ForecastCard.propTypes = {
-  forecastDataObj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  forecastDataObj: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
   tempF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  temp_minF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  temp_maxF: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  temp_minF: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  temp_maxF: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   checked: PropTypes.bool.isRequired
 };
 
