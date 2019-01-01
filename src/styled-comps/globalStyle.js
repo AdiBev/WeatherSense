@@ -1,10 +1,16 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 
+const nightBgColor = "#4D243D";
+const morningBgColor = "#4698f0";
+const morningColor = "#FFFFFF";
+const nightColor = "#DF928E";
+
 const GlobalStyles = createGlobalStyle`
   html  {
-    background: ${props => (props.dNdata === "n" ? "#676767" : "#feffd6")};
-      color: ${props => (props.dNdata === "d" ? "#324597" : "#c4c166")};
+    background: ${props =>
+      props.dNdata === "n" ? nightBgColor : morningBgColor};
+      color: ${props => (props.dNdata === "d" ? morningColor : nightColor)};
   }`;
 
 export const GlobalStylesComp = props => {
