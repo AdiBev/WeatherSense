@@ -6,6 +6,7 @@ A simple, opensource weather app made using [React](https://reactjs.org/) librar
 * Simple design 
 * Day and night theme
 * Multiple temperature units
+* Multiple wind speed units
 * Gives weather forecast for any city in the world
 
 # Contribution
