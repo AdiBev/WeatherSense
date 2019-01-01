@@ -1,7 +1,13 @@
+//font for forecast_template
 @import url("https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding");
 
-/*general styles here*/
+//font for logo
+@import url("https://fonts.googleapis.com/css?family=Cinzel");
 
+//font for app_desc and error message
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+
+/*general styles here*/
 body {
   line-height: 1;
   font-family: "Nanum Gothic Coding", monospace;
@@ -11,12 +17,8 @@ body {
   }
 }
 
-
-
 @import "_cardStyles";
 @import "_formStyles";
-
-
 
 .container {
   display: grid;
@@ -29,8 +31,44 @@ body {
 #logo {
   grid-column: 1 / 3;
   align-items: center;
+  h1 {
+    font-family: "Cinzel", serif;
+    color: #ffd601;
+    text-align: center;
+  }
 }
 
 .wi {
   font-size: 30px;
+}
+
+//common styles for weathericons
+iconsStyles {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #2b0213;
+  padding: 0.1em 0.4em;
+}
+
+.wi-direction-up::before {
+  @extend iconsStyles;
+}
+
+.wi-direction-down::before {
+  @extend iconsStyles;
+}
+
+.switch.wi-fahrenheit::before {
+  @extend iconsStyles;
+}
+
+.switch.wi-celsius::before {
+  @extend iconsStyles;
+}
+
+//error message styles
+#error {
+  color: #c61212;
+  text-align: center;
+  font-family: "Ubuntu", sans-serif;
 }

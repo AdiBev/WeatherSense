@@ -10,31 +10,44 @@
       padding-top: 10px;
       font-size: 18px;
       text-align: center;
-      outline: none;
+      border: none;
       box-shadow: none;
 
       &:focus {
-        border-color: #139f6a;
+        border: 2px solid #025846;
+        outline: none;
       }
     }
 
     #submit {
-      padding: 10px 5px 5px;
+      padding: 7px 18px;
       border-radius: 5px;
-      border-color: #0e4d65;
       margin-left: 10px;
-      outline: none;
-      color: white;
-      background-color: #5379d9;
-      display: inline-block;
-      font-size: 15px;
+      position: relative;
+      bottom: 4px;
+      border: none;
+      background-color: #3a31a6;
+
+      span {
+        color: white;
+        font-weight: normal;
+        font-size: 17px;
+      }
+      &:hover {
+        background-color: #506ead;
+        cursor: pointer;
+      }
     }
   }
 
   #app-desc {
     align-items: center;
-
-    color: #094469;
+    color: #0a2d3c;
     text-align: center;
+    font-family: "Ubuntu", sans-serif;
+
+    h2 {
+      font-weight: bold;
+    }
   }
 }
