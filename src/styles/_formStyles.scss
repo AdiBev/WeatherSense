@@ -39,6 +39,10 @@
       }
     }
   }
+  #switch {
+    margin-left: 70px;
+    margin-top: 10px;
+  }
 
   #app-desc {
     align-items: center;
@@ -49,5 +53,18 @@
     h2 {
       font-weight: bold;
     }
+  }
+}
+
+//media queries for form
+@media only screen and (max-width: 500px) {
+  form #submit {
+    display: block;
+    margin-top: 10px;
+  }
+  form #switch {
+    position: relative;
+    right: 35px;
+    top: 15px;
   }
 }
