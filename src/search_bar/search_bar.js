@@ -35,10 +35,18 @@ class SearchBar extends Component {
     this.setState({ checked: checked });
   };
 
+  handleErrors = response => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  };
+
   getWeatherdata = term => {
     const root_url = `https://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&appid=${API_KEY}`;
     return fetch(root_url)
       .then(this.setState({ loading: true }))
+      .then(this.handleErrors)
       .then(resp => resp.json())
       .then(data =>
         this.setState({
