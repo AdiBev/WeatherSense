@@ -86,7 +86,7 @@ class SearchBar extends Component {
             <button type="submit" id="submit">
               <span>Search</span>
             </button>
-            <div style={{ marginLeft: 70, marginTop: 10 }}>
+            <div id="switch">
               {forecastDataObj && !error ? (
                 <Fragment>
                   <i className="wi wi-celsius switch" />{" "}
