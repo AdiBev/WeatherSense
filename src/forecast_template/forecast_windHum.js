@@ -9,7 +9,7 @@ export const ForecastWindHumidity = ({
 }) => {
   const windIcon = `wi wi-wind towards-${windData.deg}-deg`;
   const windUnit = `${checked} ?  : `;
-  const windMiles = `${windSpeedM} miles/sec`;
+  const windMiles = `${windSpeedM} miles/hour`;
   const windMeter = `${Math.round(windData.speed)} m/sec`;
 
   return (
